@@ -27,6 +27,9 @@ gem "jbuilder"
 # Database Postgresql
 gem 'pg', '~> 1.5', '>= 1.5.3'
 
+# Devise authentication solution
+gem "devise", "~> 4.9"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
