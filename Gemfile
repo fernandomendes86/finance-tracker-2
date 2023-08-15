@@ -34,6 +34,9 @@ gem "devise", "~> 4.9"
 gem 'bootstrap', '5.2.3'
 gem 'jquery-rails'
 
+# Iex
+gem 'iex-ruby-client'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
