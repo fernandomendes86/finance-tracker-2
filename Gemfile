@@ -37,6 +37,9 @@ gem 'jquery-rails'
 # Iex
 gem 'iex-ruby-client'
 
+# Font-Awesome-Rails
+gem "font-awesome-rails"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
