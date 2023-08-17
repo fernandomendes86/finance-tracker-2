@@ -18,12 +18,12 @@
 </div>
 <% if @stock %>
   <div class="card card-header mt-2", style="display: inline-block;">
-    <strong>Symbol: </strong> <%= @stock.ticker.upcase %>
-    <strong>Name: </strong> <%= @stock.name.capitalize %>
-    <strong>Price: </strong> <%= number_to_currency(@stock.last_price) %>
-  </div>
-<% elsif @stock_errors %>
-  <div class="card card-header mt-2", style="display: inline-block;">
-    <%= @stock_errors %> 
+    <% unless @stock.try(:full_message) %>
+      <strong>Symbol: </strong> <%= @stock.ticker.upcase %>
+      <strong>Name: </strong> <%= @stock.name.capitalize %>
+      <strong>Price: </strong> <%= number_to_currency(@stock.last_price) %>
+    <% else %>
+      <%= @stock.full_message %>
+    <% end %>
   </div>
 <% end %>
