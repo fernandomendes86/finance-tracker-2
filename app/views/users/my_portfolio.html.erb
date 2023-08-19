@@ -7,7 +7,7 @@
         <div class="col-sm-9">
           <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 search-button">
           <%= button_tag type: :submit, class: "btn btn-success" do %>
           <%#= button_tag type: :submit, class: "btn btn-success", data: { turbo: false } do %>
             <%= fa_icon 'search 2x' %>
