@@ -1,11 +1,11 @@
 <% if @stock %>
-  <div class="card card-header mt-2", style="display: inline-block;">
-    <% unless @stock.try(:full_message) %>
+  <% unless @stock.try(:full_message) %>
+    <div class="card card-header mt-2", style="display: inline-block;">
       <strong>Symbol: </strong> <%= @stock.ticker.upcase %>
       <strong>Name: </strong> <%= @stock.name.capitalize %>
       <strong>Price: </strong> <%= number_to_currency(@stock.last_price) %>
-    <% else %>
-      <%= @stock.full_message %>
-    <% end %>
-  </div>
+      <%= link_to "Add to portfolio", user_stocks_path(user: current_user, ticker: @stock.ticker.upcase), 
+                                      data: { turbo_method: :post }, class: "btn btn-success" %>
+    </div>
+  <% end %>
 <% end %>
