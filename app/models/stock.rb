@@ -9,9 +9,9 @@ class Stock < ApplicationRecord
       twelve_data = TwelveDataService::TwelveDataReader.search_data(ticker_symbol)
       raise if twelve_data.code
 
-      new(ticker: ticker_symbol, name: twelve_data.name, last_price: twelve_data.close)
+      new(ticker: twelve_data.symbol, name: twelve_data.name, last_price: twelve_data.close)
     rescue => exception
-      new.errors.add(:ticker, :blank, message:'symbol not found!')
+      new.errors.add(:ticker, :blank, message: "#{ticker_symbol} was not found!")
     end
   end
 end
