@@ -29,8 +29,11 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto me-2">
+          <li class="nav-item user-name">
+            <%= fa_icon 'user' %> <%= print_full_name %>  
+          </li>
           <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
+            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
           </li>
         </ul>
         <form class="d-flex" role="search">
