@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   
   STOCK_LIMIT = 10
+  SEARCH_ATTRIBUTES = [:first_name, :last_name, :email].freeze 
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,5 +25,17 @@ class User < ApplicationRecord
 
   def can_track_stock?(ticker_symbol)
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
+  end
+
+  def self.search(param)
+    param.strip!
+    users = SEARCH_ATTRIBUTES.each_with_object([]) do |attribute, result|
+      result << where("#{attribute} like ?", "%#{param}%")
+    end
+    users.flatten.uniq
+  end
+
+  def can_track_friend?(friend)
+    return true if friend 
   end
 end
