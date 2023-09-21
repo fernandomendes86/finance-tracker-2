@@ -11,11 +11,13 @@ class UsersController < ApplicationController
 
   def search
     if params[:friend].present?
-      @friend = User.search(params[:friend]).first
-      flash.now[:alert] = "Couldn't find user!" unless @friend
+      @friends_result = User.search(params[:friend], current_user)
+      flash.now[:alert] = "Couldn't find user." unless @friends_result.present?
+
       render 'users/my_friends'
     else
-      flash.now[:alert] = "Please enter your name or email to search"
+      flash.now[:alert] = "Please enter your name or email to search."
+
       render 'users/my_friends'
     end
   end

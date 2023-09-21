@@ -27,12 +27,13 @@ class User < ApplicationRecord
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
   end
 
-  def self.search(param)
+  def self.search(param, current_user=nil)
     param.strip!
     users = SEARCH_ATTRIBUTES.each_with_object([]) do |attribute, result|
       result << where("#{attribute} like ?", "%#{param}%")
     end
-    users.flatten.uniq
+
+    users.flatten.uniq.reject{ |user| user == current_user}
   end
 
   def can_track_friend?(friend)

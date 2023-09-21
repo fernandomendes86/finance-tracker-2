@@ -1,16 +1,17 @@
-<% if @friend %>
-  <% unless @friend.try(:full_message) %>
-    <div class="card card-header mt-2", style="display: inline-block;">
-      <strong>Name: </strong> <%= print_full_name(@friend) %>
-      <strong>Email: </strong> <%= @friend.email %>
-      <% if current_user.can_track_friend?(@friend) %>
-        <%= link_to "Follow me", "#", 
-                                      data: { turbo_method: :post }, class: "btn btn-success" %>
-      <% else %>
-        <span class="badge bg-secondary">
-          Friend already exists
-        </span>
-      <% end %>
-    </div>
-  <% end %>
+<% @friends_result.try(:each) do |friend| %>
+  <div class="card card-header mt-2", style="display: inline-block;">
+    <strong>Name: </strong> <%= print_full_name(friend) %>
+    <strong>Email: </strong> <%= friend.email %>
+    <strong>Actions: </strong> <%= link_to "View profile", "#", 
+                                    data: { turbo_method: :get }, class: "btn btn-sm btn-success" %> |
+    <% if current_user.can_track_friend?(friend) %>
+      <%= link_to "Follow me", "#", 
+                                    data: { turbo_method: :post }, class: "btn btn-sm btn-success" %>
+    <% else %>
+      <span class="badge bg-secondary">
+        Friend already exists
+      </span>
+    <% end %>
+  </div>
+  <br />
 <% end %>
