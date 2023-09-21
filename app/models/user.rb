@@ -27,7 +27,7 @@ class User < ApplicationRecord
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
   end
 
-  def self.search(param, current_user=nil)
+  def self.search(param, current_user = nil)
     param.strip!
     users = SEARCH_ATTRIBUTES.each_with_object([]) do |attribute, result|
       result << where("#{attribute} like ?", "%#{param}%")
