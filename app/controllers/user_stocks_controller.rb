@@ -7,8 +7,12 @@ class UserStocksController < ApplicationController
       @stock = Stock.new_lookup(params[:ticker])
       @stock.save
     end
-    @user_stocks = UserStock.create(user: current_user, stock: @stock)
-    flash[:notice] = "Stock #{@stock.name} was successfully added to your portfolio"
+    user_stocks = UserStock.create(user: current_user, stock: @stock)
+    if user_stocks.persisted?
+      flash[:notice] = "Stock #{@stock.name} was successfully added to your portfolio"
+    else
+      flash[:alert] =  "Stock #{@stock.name} was not added to your portfolio"
+    end
 
     redirect_to my_portfolio_path
   end
