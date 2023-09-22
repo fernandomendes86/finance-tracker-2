@@ -9,9 +9,9 @@ class UserStocksController < ApplicationController
     end
     user_stocks = UserStock.create(user: current_user, stock: @stock)
     if user_stocks.persisted?
-      flash[:notice] = "Stock #{@stock.name} was successfully added to your portfolio"
+      flash[:notice] = "Stock #{@stock.name} was successfully added to your portfolio."
     else
-      flash[:alert] =  "Stock #{@stock.name} was not added to your portfolio"
+      flash[:alert] =  "Stock #{@stock.name} was not added to your portfolio."
     end
 
     redirect_to my_portfolio_path
@@ -19,12 +19,13 @@ class UserStocksController < ApplicationController
 
   def destroy
     user_stock = UserStock.find_by(user_id: current_user, stock_id: @stock)
-    if user_stock
-      user_stock.destroy
-      flash[:notice] = "#{@stock.ticker} was successfully removed from portfolio"
-      
-      redirect_to my_portfolio_path
+    if user_stock.try(:destroy)
+      flash[:notice] = "#{@stock.ticker} was not removed from the portfolio."
+    else
+
     end
+
+    redirect_to my_portfolio_path
   end
 
   private

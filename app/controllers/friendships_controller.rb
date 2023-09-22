@@ -4,9 +4,9 @@ class FriendshipsController < ApplicationController
   def create
     friendship = current_user.friendships.build(friend: @friend)
     if friendship.save
-      flash[:notice] = "Following user" 
+      flash[:notice] = "Following user." 
     else
-      flash[:alert] = "Unable to follow user"
+      flash[:alert] = "Unable to follow user."
     end
 
     redirect_to my_friends_path
@@ -14,12 +14,13 @@ class FriendshipsController < ApplicationController
 
   def destroy
     friendship = current_user.friendships.find_by_friend_id(params[:id])
-    if friendship
-      friendship.destroy
-      flash[:notice] = "You stopped following!"
-      
-      redirect_to my_friends_path
+    if friendship.try(:destroy)
+      flash[:notice] = "You stopped following."
+    else  
+      flash[:alert] = "Unable to stopped follow user."  
     end
+
+    redirect_to my_friends_path
   end
 
   private
