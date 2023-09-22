@@ -36,7 +36,7 @@ class User < ApplicationRecord
     users.flatten.uniq.reject{ |user| user == current_user}
   end
 
-  def can_track_friend?(friend)
-    return true if friend 
+  def can_follow_friend?(friend)
+    friends.exclude?(friend)
   end
 end

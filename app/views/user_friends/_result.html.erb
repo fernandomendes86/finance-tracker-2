@@ -4,12 +4,12 @@
     <strong>Email: </strong> <%= friend.email %>
     <strong>Actions: </strong> <%= link_to "View profile", "#", 
                                     data: { turbo_method: :get }, class: "btn btn-sm btn-success" %> |
-    <% if current_user.can_track_friend?(friend) %>
+    <% if current_user.can_follow_friend?(friend) %>
       <%= link_to "Follow me", "#", 
                                     data: { turbo_method: :post }, class: "btn btn-sm btn-success" %>
     <% else %>
       <span class="badge bg-secondary">
-        Friend already exists
+        You are friends
       </span>
     <% end %>
   </div>
