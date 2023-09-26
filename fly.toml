@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for finance-tracker-2 on 2023-09-25T22:30:38-03:00
+# fly.toml app configuration file generated for finance-tracker-2 on 2023-09-25T22:49:30-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -20,6 +20,3 @@ console_command = "/rails/bin/rails console"
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
-[deploy]
-  release_command = "./bin/rails db:prepare"
-
