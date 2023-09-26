@@ -1,0 +1,24 @@
+<%= turbo_frame_tag 'turbo_friend' do %>
+  <%= render "layouts/messages" %>
+  <h2>User Details</h2>
+
+  <div class="card card-header mt-2", style="display: inline-block;">
+    <strong>Name: </strong> <%= print_full_name(@user) %>
+    <strong>Email: </strong> <%= @user.email %> |
+    <% if current_user.can_follow_friend?(@user) %>
+      <%= link_to "Follow me", friendships_path(friend: @user), 
+                                    data: { turbo_method: :post }, class: "btn btn-sm btn-success" %>
+    <% else %>
+      <span class="badge bg-secondary">
+        You are friends
+      </span>
+    <% end %>
+  </div>
+  <br /><br />
+  <% unless @tracked_stocks.blank? %>
+    <h2>Stocks</h2>
+    <%= render 'stocks/list' %>
+  <% else %>
+    <p class='lead'>This user is not tracking any stocks</p>
+  <% end %>
+<% end %>

@@ -2,7 +2,7 @@
   <div class="card card-header mt-2", style="display: inline-block;">
     <strong>Name: </strong> <%= print_full_name(friend) %>
     <strong>Email: </strong> <%= friend.email %>
-    <strong>Actions: </strong> <%= link_to "View profile", "#", 
+    <strong>Actions: </strong> <%= link_to "View profile", user_path(friend), 
                                     data: { turbo_method: :get }, class: "btn btn-sm btn-success" %> |
     <% if current_user.can_follow_friend?(friend) %>
       <%= link_to "Follow me", friendships_path(friend: friend), 

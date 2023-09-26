@@ -14,7 +14,11 @@ class UserStocksController < ApplicationController
       flash[:alert] =  "Stock #{@stock.name} was not added to your portfolio."
     end
 
-    redirect_to my_portfolio_path
+    unless params[:user_friend].nil?
+      redirect_to user_path(params[:user_friend])
+    else
+      redirect_to my_portfolio_path
+    end  
   end
 
   def destroy

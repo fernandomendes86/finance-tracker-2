@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     @friends = current_user.friends
   end
 
+  def show
+    @user = User.find(params[:id])
+    @tracked_stocks = @user.stocks
+  end
+
   def search
     if params[:friend].present?
       @friends_result = User.search(params[:friend], current_user)
